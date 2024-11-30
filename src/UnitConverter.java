@@ -1,5 +1,8 @@
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,59 +41,90 @@ public class UnitConverter extends JFrame {
 		setTitle("Unit Converter");
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new GridLayout(6, 2, 10, 10));
+		setLayout(new GridBagLayout());
 		getContentPane().setBackground(Color.BLACK);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.insets = new Insets(10, 10, 10, 10);
 		
 		JLabel titleLabel = new JLabel("Unit Converter", SwingConstants.CENTER);
 		titleLabel.setForeground(Color.WHITE);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		add(titleLabel, gbc);
 		
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		JLabel conversionTypeLabel = new JLabel("Conversion Type:", SwingConstants.LEFT);
+		conversionTypeLabel.setForeground(Color.WHITE);
+		add(conversionTypeLabel, gbc);
+		
+		gbc.gridx = 1;
 		conversionTypeComboBox = new JComboBox<>(CONVERSION_TYPES);
 		conversionTypeComboBox.addActionListener(new ConversionTypeListener());
+		conversionTypeComboBox.setBackground(Color.DARK_GRAY);
+		conversionTypeComboBox.setForeground(Color.WHITE);
+		add(conversionTypeComboBox, gbc);
 		
+		gbc.gridx = 0;
+		gbc.gridy++;
+		JLabel fromUnitLabel = new JLabel("From Unit:", SwingConstants.LEFT);
+		fromUnitLabel.setForeground(Color.WHITE);
+		add(fromUnitLabel, gbc);
+		
+		gbc.gridx = 1;
 		fromUnitComboBox = new JComboBox<>(DISTANCE_UNITS);
-		toUnitComboBox = new JComboBox<>(DISTANCE_UNITS);
+		fromUnitComboBox.setBackground(Color.DARK_GRAY);
+		fromUnitComboBox.setForeground(Color.WHITE);
+		add(fromUnitComboBox, gbc);
 		
+		gbc.gridx = 0;
+		gbc.gridy++;
+		JLabel toUnitLabel = new JLabel("To Unit:", SwingConstants.LEFT);
+		toUnitLabel.setForeground(Color.WHITE);
+		add(toUnitLabel, gbc);
+		
+		gbc.gridx = 1;
+		toUnitComboBox = new JComboBox<>(DISTANCE_UNITS);
+		toUnitComboBox.setBackground(Color.DARK_GRAY);
+		toUnitComboBox.setForeground(Color.WHITE);
+		add(toUnitComboBox, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy++;
+		JLabel inputLabel = new JLabel("Input Value:", SwingConstants.LEFT);
+		inputLabel.setForeground(Color.WHITE);
+		add(inputLabel, gbc);
+		
+		gbc.gridx = 1;
 		inputField = new JTextField();
+		inputField.setBackground(Color.DARK_GRAY);
+		inputField.setForeground(Color.WHITE);
+		add(inputField, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy++;
+		JLabel outputLabel = new JLabel("Converted Value:", SwingConstants.LEFT);
+		outputLabel.setForeground(Color.WHITE);
+		add(outputLabel, gbc);
+		
+		gbc.gridx = 1;
 		outputField = new JTextField();
 		outputField.setEditable(false);
+		outputField.setBackground(Color.DARK_GRAY);
+		outputField.setForeground(Color.WHITE);
+		add(outputField, gbc);
 		
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
 		JButton convertButton = new JButton("Convert");
+		convertButton.setBackground(Color.DARK_GRAY);
+		convertButton.setForeground(Color.WHITE);
 		convertButton.addActionListener(new ConvertButtonListener());
-		
-		add(titleLabel);
-		add(new JLabel());
-		
-		add(new JLabel("Conversion Type:", SwingConstants.RIGHT));
-		add(conversionTypeComboBox);
-		
-		add(new JLabel("From Unit:", SwingConstants.RIGHT));
-		add(fromUnitComboBox);
-		
-		add(new JLabel("To Unit:", SwingConstants.RIGHT));
-		add(toUnitComboBox);
-		
-		add(new JLabel("Input Value:", SwingConstants.RIGHT));
-		add(inputField);
-		
-		add(new JLabel("Converted Value:", SwingConstants.RIGHT));
-		add(outputField);
-		
-		add(new JLabel());
-		add(convertButton);
-		
-        titleLabel.setForeground(Color.WHITE);
-        conversionTypeComboBox.setBackground(Color.DARK_GRAY);
-        conversionTypeComboBox.setForeground(Color.WHITE);
-        fromUnitComboBox.setBackground(Color.DARK_GRAY);
-        fromUnitComboBox.setForeground(Color.WHITE);
-        toUnitComboBox.setBackground(Color.DARK_GRAY);
-        toUnitComboBox.setForeground(Color.WHITE);
-        inputField.setBackground(Color.DARK_GRAY);
-        inputField.setForeground(Color.WHITE);
-        outputField.setBackground(Color.DARK_GRAY);
-        outputField.setForeground(Color.WHITE);
-        convertButton.setBackground(Color.DARK_GRAY);
-        convertButton.setForeground(Color.WHITE);
+		add(convertButton, gbc);
 		
 	}
 	
